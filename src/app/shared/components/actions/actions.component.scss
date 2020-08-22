@@ -1,0 +1,70 @@
+@import "../../../../theme/styles.scss";
+
+nb-card-header {
+    display: flex;
+    flex-direction: row;
+}
+
+nb-card-header div.left {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+nb-card-header div.left div.warehouse {
+    padding-right: 1%;
+    padding-left: 1%;
+}
+
+nb-card-header div.left div.warehouse div.actions {
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid #8f9bb3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+nb-card-header div.left div.warehouse div.actions.disabled {
+    cursor: none;
+    background-color: map-get($colors, _gray_3);
+}
+
+nb-card-header div.left div.warehouse div.actions span i {
+    color: map-get($colors, _gray_3);
+}
+
+nb-card-header div.left div.warehouse div.actions span nb-icon {
+    color: map-get($colors, _gray_3);
+}
+
+nb-card-header div.left div.warehouse div.actions.disabled span i {
+    cursor: none;
+    color: whitesmoke;
+}
+
+nb-card-header div.left div.warehouse div.actions.disabled span nb-icon {
+    cursor: none;
+    color: whitesmoke;
+}
+
+nb-card-header div.right {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+nb-card-header div.right span._breadcrumb {
+    font-family: "Open Sans", sans-serif;
+    color: map-get($colors, _gray_3);
+    display: inline-flex;
+    cursor: pointer;
+}
+
+nb-card-header div.right span._breadcrumb div {
+    padding: 0 2%;
+    display: inline;
+}

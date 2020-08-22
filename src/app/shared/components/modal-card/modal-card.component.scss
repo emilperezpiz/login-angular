@@ -1,0 +1,17 @@
+div.show-card div.card-container {
+    border: 10px solid white !important;
+    margin-bottom: 5%;
+}
+
+div.options {
+    display: flex;
+    flex-direction: row;
+}
+
+div.options div.right {
+    padding-right: 1%;
+}
+
+div.options div.left {
+    padding-left: 1%;
+}

@@ -1,0 +1,119 @@
+<ngx-actions [aux]="aux" (action)="currentAction($event)"></ngx-actions>
+
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>
+        {{ 'title.' + aux.title | translate }}
+      </nb-card-header>
+      <nb-card-body>
+        <form #f="ngForm" (ngSubmit)=onSubmit(f) autocomplete="off">
+          <div class="row show-grid">
+            <div class="col-md-8">
+              <div class="form-group row">
+                <label for="name" class="label col-sm-3 col-form-label">{{ 'label.name' | translate }}:
+                  <span class="required">*</span>
+                </label>
+                <div class="col-sm-9">
+                  <input type="text" nbInput fullWidth id="name" name="name"
+                    placeholder="{{ 'label.name' | translate }}" [(ngModel)]="data.name" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="surname" class="label col-sm-3 col-form-label">{{ 'label.surname' | translate }}:
+                  <span class="required">*</span>
+                </label>
+                <div class="col-sm-9">
+                  <input type="text" nbInput fullWidth id="surname" name="surname"
+                    placeholder="{{ 'label.surname' | translate }}" [(ngModel)]="data.surname" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="cpf" class="label col-sm-3 col-form-label">{{ 'label.cpf' | translate }}:
+                  <span class="required">*</span>
+                </label>
+                <div class="col-sm-9">
+                  <input type="text" nbInput fullWidth id="cpf" name="cpf" mask="000.000.000-00" (blur)="validateCpf()"
+                    placeholder="{{ 'label.cpf' | translate }}" [(ngModel)]="data.cpf" required>
+                  <small class="form-text text-muted invalid">{{ invalidCpf }}</small>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 label" for="gender">{{ 'label.gender' | translate }}:
+                  <span class="required">*</span>
+                </label>
+                <div class="col-sm-9">
+                  <nb-radio-group [(ngModel)]="data.gender" name="gender" name="gender" required>
+                    <nb-radio value="F">{{ 'label.female' | translate }}</nb-radio>
+                    <nb-radio value="M">{{ 'label.male' | translate }}</nb-radio>
+                  </nb-radio-group>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="email" class="label col-sm-3 col-form-label">{{ 'label.emailAddress' | translate }}:
+                  <span class="required">*</span>
+                </label>
+                <div class="col-sm-9">
+                  <input type="text" nbInput fullWidth id="email" name="email" ngForm required minlength="4"
+                    (blur)="checkEmail()" placeholder="{{ 'label.emailAddress' | translate }}" [(ngModel)]="data.email">
+                  <small class="form-text text-muted invalid">{{ invalidEmail }}</small>
+                </div>
+              </div>
+              <div class="form-group row" *ngIf="aux && aux.action === 'edit'">
+                <label class="col-sm-3 label" for="actived">{{ 'label.actived' | translate }}:</label>
+                <div class="col-sm-9">
+                  <nb-checkbox [(ngModel)]="data.isActive" name="actived" id="actived"></nb-checkbox>
+                </div>
+              </div>
+              <div
+                *ngIf="aux && aux.action === 'edit' && personal && personal.profile && personal.profile.role === 'ROLE_PROPERTY'">
+                <div class="form-group row">
+                  <label for="password" class="label col-sm-3 col-form-label">{{ 'label.password' | translate }}:
+                    <span class="required" *ngIf="requiredPassword">*</span>
+                  </label>
+                  <div class="col-sm-9">
+                    <input type="password" nbInput fullWidth id="password" name="password" (blur)="writerPassword()"
+                      placeholder="{{ 'label.password' | translate }}" [(ngModel)]="data.password" minlength="4"
+                      autocomplete="off">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="passwordConfirm"
+                    class="label col-sm-3 col-form-label">{{ 'label.passwordConfirm' | translate }}:
+                    <span class="required" *ngIf="requiredPassword">*</span>
+                  </label>
+                  <div class="col-sm-9">
+                    <input type="password" nbInput fullWidth id="passwordConfirm" name="passwordConfirm"
+                      (blur)="writerPassword()" placeholder="{{ 'label.passwordConfirm' | translate }}"
+                      [(ngModel)]="data.passwordConfirm" minlength="4" autocomplete="off">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div id="main-preview" class="col-md-12">
+                <img [src]="data.path" *ngIf="data.path" [ngClass]="{hide: imageChangedEvent == ''? false:true }"
+                  class="img-responsive" style="width: 100%;" />
+                <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" class="image-crop"
+                  [ngClass]="{hide: imageChangedEvent == ''? true: false}" [aspectRatio]="4 / 3" format="png"
+                  (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()"
+                  (loadImageFailed)="loadImageFailed()"></image-cropper>
+              </div>
+              <a href="javascript:;" id="btn-select-image" class="btn btn-default" (click)="selectImage()"
+                style="margin-top: 10px;width: 100%;">
+                {{ 'button.selectImage' | translate }}
+              </a>
+              <input type="file" id="selectImage" (change)="fileChangeEvent($event)" name="img" accept="image/*"
+                [(ngModel)]="data.img" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="offset-sm-2 col-sm-9">
+              <button type="submit" nbButton status="primary">{{ 'button.save' | translate }}</button>
+            </div>
+          </div>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

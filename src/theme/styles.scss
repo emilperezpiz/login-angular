@@ -1,0 +1,43 @@
+// COLORES
+$colors: (
+  _yellow_1: #fbb03b,
+  _gray_1: #b0b4c7,
+  _gray_2: #c8c8c8,
+  _gray_3: #6f7783,
+  _gray_4: #4a4b5a,
+  _gray_5: #797d9f,
+  _gray_6: #707070,
+  _gray_7: #ccc,
+  _gray_8: #f7f9fc,
+  _gray_9: #edf1f7,
+  _white_1: #ffffff,
+  _white_2: #ddf8fb,
+  _white_3: #ffcc98,
+  _white_4: #d7e4c5,
+  _white_5: #f7f9fc,
+  _white_6: #edf1f7,
+  _blue_1: #14b2d3,
+  _blue_2: #394684,
+  _blue_3: #797d9f,
+  _blue_4: #272851,
+  _blue_5: #3876a7,
+  _blue_6: #2c6da1,
+  _blue_7: #1aa1c7,
+  _blue_8: #383c64,
+  _red_1: #f6635e,
+  _red_2: #8f3333,
+  _red_3: #ff3d71,
+  _green_1: #2c7b44,
+  _green_2: #64bb5d,
+);
+
+// FUENTES
+@import url("https://fonts.googleapis.com/css?family=Signika");
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans");
+@import url("https://fonts.googleapis.com/css?family=Zilla+Slab");
+
+$fonts: (
+  _signika_regular: "Signika",
+  _fira_sans: "Fira Sans",
+  _zilla_slab: "Zilla Slab",
+);

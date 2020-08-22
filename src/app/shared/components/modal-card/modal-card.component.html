@@ -1,0 +1,49 @@
+<nb-card>
+  <nb-card-header>{{ 'title.card' | translate }}</nb-card-header>
+  <nb-card-body>
+
+    <div class="show-card">
+      <div class="card-container"></div>
+    </div>
+    <form #f="ngForm" (ngSubmit)="do(f)" card container=".card-container" card-width="500" [messages]="messages"
+      [placeholders]="placeholders" [masks]="masks" formatting="false" debug="true" autocomplete="off">
+      <div class="form-group">
+        <input type="text" [(ngModel)]="data.cardNumber" id="number" name="number" card-number nbInput fullWidth
+          placeholder="{{ 'label.cardNumber' | translate }} *" required />
+        <small id="emailHelp" class="form-text text-muted">{{ invalidEmail }}</small>
+      </div>
+      <div class="form-group">
+        <input type="text" name="first-name" [(ngModel)]="data.name" card-name nbInput fullWidth
+          placeholder="{{ 'label.name' | translate }} *" required />
+        <small id="emailHelp" class="form-text text-muted">{{ invalidEmail }}</small>
+      </div>
+      <div class="form-group">
+        <input type="text" name="last-name" [(ngModel)]="data.surname" card-name nbInput fullWidth
+          placeholder="{{ 'label.surname' | translate }} *" required />
+        <small id="emailHelp" class="form-text text-muted">{{ invalidEmail }}</small>
+      </div>
+      <div class="form-group options">
+        <div class="right">
+          <input type="text" name="expiry" [(ngModel)]="data.expiry" card-expiry nbInput
+            placeholder="{{ 'label.expiry' | translate }} *" required />
+        </div>
+        <div class="left">
+          <input type="text" name="cvc" [(ngModel)]="data.cvc" card-cvc nbInput
+            placeholder="{{ 'label.cvc' | translate }} *" required />
+        </div>
+      </div>
+      <div class="form-group options" [ngStyle]="{'align-items': 'flex-end'}">
+        <label class="label" for="credit">{{ 'label.credit' | translate }}:
+        </label>
+        <div class="col-sm-9">
+          <nb-checkbox [ngModel]="data.credit === 'S'" name="credit" id="credit"
+            (ngModelChange)="data.credit = $event ? 'S' : 'N'">
+          </nb-checkbox>
+        </div>
+      </div>
+      <button class="cancel" nbButton status="danger" (click)="cancel()"
+        style="margin-right: 1%;">{{ 'button.cancel' | translate }}</button>
+      <button nbButton status="success" type="submit">{{ 'button.continue' | translate }}</button>
+    </form>
+  </nb-card-body>
+</nb-card>

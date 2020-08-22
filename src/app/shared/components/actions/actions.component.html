@@ -1,0 +1,27 @@
+<nb-card>
+  <nb-card-header>
+    <div class="left">
+      <div *ngFor="let item of buttons" class="warehouse">
+        <div class="actions" [ngClass]="{'disabled': (item.active !== true && !aux.currentId)}" nbButton status="danger"
+          nbPopover="{{ 'button.' + item.action | translate }}" nbPopoverTrigger="hint" nbPopoverPlacement="top"
+          (click)="currentAction(item)">
+          <span>
+            <i class="fa fa-list" *ngIf="item.action === 'list' && !item.icon"></i>
+            <i class="fa fa-plus" *ngIf="item.action === 'new' && !item.icon"></i>
+            <i class="fa fa-edit" *ngIf="item.action === 'edit' && !item.icon"></i>
+            <i class="fa fa-eye" *ngIf="item.action === 'show' && !item.icon"></i>
+            <i class="fa fa-trash" *ngIf="item.action === 'delete' && !item.icon"></i>
+            <i class="{{ item.icon }}" *ngIf="item.icon && item.type ==='fa'"></i>
+            <nb-icon class="{{ item.icon }}" icon="{{ item.icon }}" pack="eva" *ngIf="item.icon && item.type ==='eva'"></nb-icon>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <span class="_breadcrumb" (click)="goHome()">{{ 'title.home' | translate }} </span>
+      <span class="_breadcrumb" (click)="go(item.url)" *ngFor="let item of aux.breadcrumb">
+        <div>/</div> {{ 'title.' + item.title | translate }}
+      </span>
+    </div>
+  </nb-card-header>
+</nb-card>

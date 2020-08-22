@@ -1,0 +1,46 @@
+@import "../../../../theme/styles.scss";
+
+div#main-preview {
+    margin-top: 0%;
+    outline: 1px solid map-get($colors, _gray_9);
+    background-color: map-get($colors, _gray_8);
+    min-height: 100px;
+    position: relative;
+    padding: 0px 0px 0px 0px;
+    height: 230px;
+    overflow: hidden;
+}
+
+div#main-preview:hover {
+    outline: 1px solid map-get($colors, _gray_7);
+}
+
+a#btn-select-image {
+    line-height: 1.44;
+    border: 1px solid map-get($colors, _gray_7) !important;
+    margin-bottom: 10px;
+    color: #8f9bb3;
+    font-size: 0.875rem;
+    font-weight: 700;
+    font-family: "Open Sans", sans-serif;
+}
+
+a#btn-select-image:hover {
+    background-color: map-get($colors, _gray_8);
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.hide {
+    display: none !important;
+}
+
+.image-crop {
+    height: inherit;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

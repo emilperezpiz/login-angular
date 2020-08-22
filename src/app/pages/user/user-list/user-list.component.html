@@ -1,0 +1,15 @@
+<ngx-actions [aux]="aux" (action)="currentAction($event)"></ngx-actions>
+
+<ngx-data-tables (outputDatatable)="getObject($event)" [title]="aux.title"
+    *ngIf="dataTable.keys && dataTable.keys.length > 0; else elseDatatable">
+</ngx-data-tables>
+<div *ngIf="dataTable.keys && dataTable.keys.length == 0">
+    <nb-card>
+        <nb-card-header _ngcontent-den-c19="">
+            <span _ngcontent-den-c19="" class="ng-star-inserted"> {{ 'title.' + aux.title | translate }} </span>
+        </nb-card-header>
+        <nb-card-body _ngcontent-dpv-c19="">
+            {{ 'message.recordsNotFound' | translate }}
+        </nb-card-body>
+    </nb-card>
+</div>

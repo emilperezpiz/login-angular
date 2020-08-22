@@ -1,0 +1,58 @@
+<ngx-actions [aux]="aux" (action)="currentAction($event)"></ngx-actions>
+
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>
+        {{ 'title.' + aux.title | translate }}
+      </nb-card-header>
+      <nb-card-body>
+        <form #f="ngForm" (ngSubmit)=onSubmit(f) autocomplete="off">
+          <div class="row show-grid">
+            <div class="col-md-8">
+              <div class="form-group row">
+                <label for="name" class="label col-sm-3 col-form-label">{{ 'label.name' | translate }}:</label>
+                <div class="col-sm-9">
+                  <input type="text" nbInput fullWidth id="name" name="name" readonly
+                    placeholder="{{ 'label.name' | translate }}" [(ngModel)]="data.name">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="surname" class="label col-sm-3 col-form-label">{{ 'label.surname' | translate }}:</label>
+                <div class="col-sm-9">
+                  <input type="text" nbInput fullWidth id="surname" name="surname" readonly
+                    placeholder="{{ 'label.surname' | translate }}" [(ngModel)]="data.surname">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="cpf" class="label col-sm-3 col-form-label">{{ 'label.cpf' | translate }}:</label>
+                <div class="col-sm-9">
+                  <input type="text" nbInput fullWidth id="cpf" name="cpf" mask="000.000.000-00" (blur)="validateCpf()"
+                    placeholder="{{ 'label.cpf' | translate }}" [(ngModel)]="data.cpf" readonly>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="email" class="label col-sm-3 col-form-label">{{ 'label.emailAddress' | translate }}:</label>
+                <div class="col-sm-9">
+                  <input type="text" nbInput fullWidth id="email" name="email" ngForm required minlength="4" readonly
+                    (blur)="checkEmail()" placeholder="{{ 'label.emailAddress' | translate }}" [(ngModel)]="data.email">
+                </div>
+              </div>
+              <div class="form-group row" *ngIf="aux && aux.action === 'edit'">
+                <label class="col-sm-3 label" for="actived">{{ 'label.actived' | translate }}:</label>
+                <div class="col-sm-9">
+                  <nb-checkbox [(ngModel)]="data.isActive" name="actived" id="actived" disabled></nb-checkbox>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div id="main-preview" class="col-md-12">
+                <img [src]="data.path" *ngIf="data.path" class="img-responsive" style="width: 100%;" />
+              </div>
+            </div>
+          </div>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
